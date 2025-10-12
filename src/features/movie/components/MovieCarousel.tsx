@@ -17,12 +17,9 @@ export default function MovieCarousel({ movies }: MovieCarouselProps) {
   return (
     <div className='relative mx-4'>
       <div className='overflow-hidden' ref={emblaRef}>
-        <div className='flex gap-4'>
+        <div className='embla__container flex gap-4'>
           {movies.map((movie) => (
-            <div
-              key={movie.id}
-              className='embla__slide relative flex-[0_0_100%] flex-shrink-0 flex-grow-0 px-2'
-            >
+            <div key={movie.id} className='embla__slide relative flex-shrink-0 flex-grow-0 px-2'>
               <MovieCarouselCard key={movie.id} movie={movie} />
             </div>
           ))}
