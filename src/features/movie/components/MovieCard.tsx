@@ -29,10 +29,10 @@ export default function MovieCard({ movie }: MovieCardProps) {
           e.preventDefault();
         }}
       >
-        <HideIcon id={movie.id} />
+        <HideIcon movie={movie} />
         <div className='flex gap-2'>
-          <LikeIcon id={movie.id} />
-          <BookmarkIcon id={movie.id} />
+          <LikeIcon movie={movie} />
+          <BookmarkIcon movie={movie} />
         </div>
       </menu>
     </div>

@@ -1,34 +1,35 @@
+import type { MovieCardType } from '@/features/movie';
 import { create } from 'zustand';
 
 interface MovieState {
-  bookmarkedMovies: number[];
-  likedMovies: number[];
-  hiddenMovies: number[];
-  toggleBookmarked: (id: number) => void;
-  toggleLiked: (id: number) => void;
-  toggleHidden: (id: number) => void;
+  bookmarkedMovies: MovieCardType[];
+  likedMovies: MovieCardType[];
+  hiddenMovies: MovieCardType[];
+  toggleBookmarked: (movie: MovieCardType) => void;
+  toggleLiked: (movie: MovieCardType) => void;
+  toggleHidden: (movie: MovieCardType) => void;
 }
 
 export const useMovieStore = create<MovieState>((set) => ({
   bookmarkedMovies: [],
   likedMovies: [],
   hiddenMovies: [],
-  toggleBookmarked: (id) =>
+  toggleBookmarked: (movie) =>
     set((state) => ({
-      bookmarkedMovies: state.bookmarkedMovies.includes(id)
-        ? state.bookmarkedMovies.filter((m) => m !== id)
-        : [...state.bookmarkedMovies, id],
+      bookmarkedMovies: state.bookmarkedMovies.some((m) => m.id === movie.id)
+        ? state.bookmarkedMovies.filter((m) => m.id !== movie.id)
+        : [...state.bookmarkedMovies, movie],
     })),
-  toggleLiked: (id) =>
+  toggleLiked: (movie) =>
     set((state) => ({
-      likedMovies: state.likedMovies.includes(id)
-        ? state.likedMovies.filter((m) => m !== id)
-        : [...state.likedMovies, id],
+      likedMovies: state.likedMovies.some((m) => m.id === movie.id)
+        ? state.likedMovies.filter((m) => m.id !== movie.id)
+        : [...state.likedMovies, movie],
     })),
-  toggleHidden: (id) =>
+  toggleHidden: (movie) =>
     set((state) => ({
-      hiddenMovies: state.hiddenMovies.includes(id)
-        ? state.hiddenMovies.filter((m) => m !== id)
-        : [...state.hiddenMovies, id],
+      hiddenMovies: state.hiddenMovies.some((m) => m.id === movie.id)
+        ? state.hiddenMovies.filter((m) => m.id !== movie.id)
+        : [...state.hiddenMovies, movie],
     })),
 }));
