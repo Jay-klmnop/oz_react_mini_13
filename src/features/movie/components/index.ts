@@ -3,3 +3,6 @@ export { default as MovieCard } from './MovieCard';
 export { default as MovieDetail } from './MovieDetail';
 export { default as MovieCarousel } from './MovieCarousel';
 export { default as MovieCarouselCard } from './MovieCarouselCard';
+export { BookmarkedMovies } from './BookmarkedMovies';
+export { LikedMovies } from './LikedMovies';
+export { HiddenMovies } from './HiddenMovies';

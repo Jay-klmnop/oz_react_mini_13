@@ -104,3 +104,12 @@
     }
   }
 }
+
+.embla__container {
+  display: flex;
+  max-height: 857px;
+}
+
+.embla__slide {
+  flex: 0 0 100%;
+}

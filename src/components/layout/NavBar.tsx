@@ -1,37 +1,21 @@
-import { Logo, SearchInput } from '@/components/common';
-import { useAuthStore } from '@/features/auth/store';
-import { supabase } from '@/api';
+import { Logo } from '@/components/common';
 import { ThemeToggle } from '@/components/common';
+import { Link } from 'react-router-dom';
+import { LuCircleUserRound } from 'react-icons/lu';
+import { SearchButton, SearchModal, SearchInput } from '@/features/search';
 
 export default function NavBar() {
-  const { user, openModal } = useAuthStore();
-
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
-  };
-
   return (
     <header className='header fixed z-50 flex h-14 w-full items-center justify-between px-5 py-2 whitespace-nowrap'>
       <Logo />
       <div className='flex flex-1 items-center justify-end gap-4'>
+        <SearchButton />
+        <SearchModal />
         <SearchInput />
         <ThemeToggle />
-        <div className='centralize gap-2 text-xs'>
-          {user ? (
-            <button onClick={handleLogout} className='button main-button h-8 w-20'>
-              Sign Out
-            </button>
-          ) : (
-            <>
-              <button onClick={() => openModal('signin')} className='button main-button h-8 w-20'>
-                Sign In
-              </button>
-              <button onClick={() => openModal('signup')} className='button main-button h-8 w-20'>
-                Sign Up
-              </button>
-            </>
-          )}
-        </div>
+        <Link to="/mypage">
+          <LuCircleUserRound size={19} />
+        </Link>
       </div>
     </header>
   );

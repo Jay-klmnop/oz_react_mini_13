@@ -27,3 +27,4 @@ folderStructureCode.md
 
 # Secrets and environment-specific files
 .env
+.env.*

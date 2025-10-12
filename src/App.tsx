@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { DetailPage, HomePage, SearchPage } from '@/pages';
 import { Layout } from '@/components/layout';
+import { MyPage } from './pages';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
         <Route path='/' element={<HomePage />} />
         <Route path='/details/:id' element={<DetailPage />} />
         <Route path='/search' element={<SearchPage />} />
+        <Route path='/mypage' element={<MyPage />} />
       </Route>
     </Routes>
   );

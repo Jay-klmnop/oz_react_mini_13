@@ -27,10 +27,17 @@ const SigninModal = () => {
   };
 
   const handleOAuthSignin = async (provider: Provider) => {
-    const { error } = await supabase.auth.signInWithOAuth({ provider });
-    if (error) {
-      setError(error.message);
-    }
+    const redirectUrl =
+    import.meta.env.MODE === 'development'
+      ? 'http://localhost:5173'
+      : 'https://fliq-movie.vercel.app';
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: { redirectTo: redirectUrl },
+    });
+
+    if (error) alert(`OAuth Error: ${error.message}`);
   };
 
   return (

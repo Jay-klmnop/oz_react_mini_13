@@ -8,7 +8,7 @@ interface MovieListProps {
 
 export default function MovieList({ movies }: MovieListProps) {
   const { hiddenMovies } = useMovieStore();
-  const visibleMovies = movies.filter((m) => !hiddenMovies.includes(m.id));
+  const visibleMovies = movies.filter((m) => !hiddenMovies.some(hidden => hidden.id === m.id));
 
   if (!visibleMovies || visibleMovies.length === 0) {
     return <div>No Movies to display.</div>;

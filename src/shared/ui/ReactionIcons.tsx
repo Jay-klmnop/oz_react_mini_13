@@ -5,19 +5,20 @@ import { RxBookmark, RxBookmarkFilled } from 'react-icons/rx';
 import { useMovieStore } from '@/shared/store';
 import toast from 'react-hot-toast';
 import Tippy from '@tippyjs/react';
+import type { MovieCardType } from '@/features/movie/types/movie';
 
 interface IconProps {
-  id: number;
+  movie: MovieCardType;
 }
 
-export function BookmarkIcon({ id }: IconProps) {
+export function BookmarkIcon({ movie }: IconProps) {
   const { bookmarkedMovies, toggleBookmarked } = useMovieStore();
-  const isBookmarked = bookmarkedMovies.includes(id);
+  const isBookmarked = bookmarkedMovies.some((m) => m.id === movie.id);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    toggleBookmarked(id);
+    toggleBookmarked(movie);
     toast.success(isBookmarked ? 'Removed from Bookmarks' : 'Added to Bookmarks');
   };
 
@@ -30,14 +31,14 @@ export function BookmarkIcon({ id }: IconProps) {
   );
 }
 
-export function LikeIcon({ id }: IconProps) {
+export function LikeIcon({ movie }: IconProps) {
   const { likedMovies, toggleLiked } = useMovieStore();
-  const isLiked = likedMovies.includes(id);
+  const isLiked = likedMovies.some((m) => m.id === movie.id);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    toggleLiked(id);
+    toggleLiked(movie);
     toast.success(isLiked ? 'Removed from Liked Movies' : 'Added to Liked Movies');
   };
 
@@ -50,15 +51,15 @@ export function LikeIcon({ id }: IconProps) {
   );
 }
 
-export function HideIcon({ id }: IconProps) {
+export function HideIcon({ movie }: IconProps) {
   const { hiddenMovies, toggleHidden } = useMovieStore();
-  const isHidden = hiddenMovies.includes(id);
+  const isHidden = hiddenMovies.some((m) => m.id === movie.id);
   const [showConfirm, setShowConfirm] = useState(false);
 
   const handleHide = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     e.preventDefault();
-    toggleHidden(id);
+    toggleHidden(movie);
     setShowConfirm(false);
     toast.success('Movie hidden from list');
   };
