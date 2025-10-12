@@ -1,8 +1,8 @@
-import { Logo, SearchInput } from '@/components/common';
+import { Logo } from '@/components/common';
 import { ThemeToggle } from '@/components/common';
 import { Link } from 'react-router-dom';
 import { LuCircleUserRound } from 'react-icons/lu';
-import { SearchButton, SearchModal } from '@/features/search';
+import { SearchButton, SearchModal, SearchInput } from '@/features/search';
 
 export default function NavBar() {
   return (
